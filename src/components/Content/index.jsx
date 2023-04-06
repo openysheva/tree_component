@@ -1,10 +1,7 @@
-import React, { useContext } from 'react';
-import { SideContext } from '../../contexts';
+import React from 'react';
 
-export const Content = (props) => {
-    const { currentElement } = useContext(SideContext);
-
-    return (
-        <div style={{ flexGrow: 1, border: '1px solid red' }}>текущий выбранный контент - {currentElement}</div>
-    );
-}
+export const Content = ({ currentChosenElement }) => (
+    <div style={{ flexGrow: 1, border: '1px solid red' }}>
+        текущий выбранный контент - {currentChosenElement}
+    </div>
+);

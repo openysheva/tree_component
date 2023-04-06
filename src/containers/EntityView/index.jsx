@@ -1,13 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Tree, Content } from '../../components';
 import { entityExample } from '../../constants';
-import { SideContextProvider } from '../../contexts';
 
-export const EntityView = () => (
-    <SideContextProvider firstSideId={`${entityExample?.tours[0]?.name}:tour`}>
+export const EntityView = () => {
+    const [currentChosenElement, setCurrentChosenElement] = useState(`${entityExample?.tours[0]?.name}:tour`);
+    const changeCurrentElement = event => {
+        setCurrentChosenElement(event?.currentTarget?.id)
+    }
+
+    return (
         <div style={{ display: 'flex' }}>
-            <Tree data={entityExample} />
-            <Content />
+            <Tree data={entityExample} currentChosenElement={currentChosenElement} changeCurrentElement={changeCurrentElement} />
+            <Content currentChosenElement={currentChosenElement} />
         </div>
-    </SideContextProvider>
-)
+    )
+};

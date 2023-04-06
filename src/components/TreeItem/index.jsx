@@ -1,9 +1,7 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { getPreviewIcon } from '../../utils';
-import { SideContext } from '../../contexts';
 
-export const TreeItem = ({ id, preview }) => {
-    const { currentElement, changeCurrentElement } = useContext(SideContext);
+export const TreeItem = ({ id, preview, currentChosenElement, changeCurrentElement }) => {
     const [name, type] = id?.split(':');
 
     return (
@@ -12,13 +10,13 @@ export const TreeItem = ({ id, preview }) => {
                 height: '28px',
                 display: 'flex',
                 alignItems: 'center',
-                fontWeight: currentElement ===  id ? 'bold' : 'normal',
+                fontWeight: currentChosenElement ===  id ? 'bold' : 'normal',
                 cursor: 'pointer'
             }}
             onClick={changeCurrentElement}
             id={id}
         >
-            <img src={getPreviewIcon(preview, type)} style={{ width: '20px', height: 'auto' }} />
+            <img src={getPreviewIcon(preview, type)} style={{ width: '20px', height: 'auto' }} alt={'icon'} />
             <p
                 style={{
                     paddingLeft: '4px',
